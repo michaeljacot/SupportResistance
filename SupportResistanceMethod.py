@@ -13,14 +13,13 @@ import matplotlib.pyplot as plt
 from lineCalc import getLine,plotLine, compareToLine,getPointOnLine,lineOffset,checkLine,getBModifier
 from DerivativeAnalysis import turningPoints
 
-def getData(stock,domain):
+def getData(stock,domain,window):
     
     tick = yf.Ticker(stock)
-    data = tick.history(interval = "5m", rounding=True)
-    hist = data[-domain:]
-    h = hist.Close.tolist()
+    data = tick.history(period = domain,interval = window)
+    closes = data.Close.tolist()
     
-    return h,hist,data
+    return closes,data
     
 
 
